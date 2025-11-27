@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title_head %}Actualizar libro{% endblock  %}
+{% block contenido %}
+    <form action={% url "actualizar" libro.id %} method='POST'>
+        {% csrf_token %}
+        {{form}}
+        
+        <input type="submit" value= "Actualizar">
+    </form>
+
+{% endblock contenido %}

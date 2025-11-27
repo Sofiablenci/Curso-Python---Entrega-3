@@ -1,1 +1,11 @@
-<h1>Se cargó un nuevo libro {{objeto_guardado.titulo}} {{objeto_guardado.genero}}</h1>
+{% extends "base.html" %}
+{% block title_head %}Cargar nuevo libro{% endblock  %}
+{% block contenido %}
+    <form action={% url "cargar"%} method='POST'>
+        {% csrf_token %}
+        {{formulario}}
+        
+        <input type="submit" value= "Crear">
+    </form>
+
+{% endblock contenido %}

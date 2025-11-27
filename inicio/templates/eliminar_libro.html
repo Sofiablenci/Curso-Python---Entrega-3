@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title_head %}Eliminar libro{% endblock  %}
+{% block contenido %}
+    <form action={% url "eliminar" libro.id %} method='POST'>
+        {% csrf_token %}
+        
+        ¿Confirma el borrado del libro {{libro}}?
+        <input type="submit" value= "Confirmación">
+    </form>
+
+{% endblock contenido %}

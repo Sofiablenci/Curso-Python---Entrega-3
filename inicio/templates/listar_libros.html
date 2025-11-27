@@ -1,11 +1,27 @@
+{% extends "base.html" %}
+{% block title_head %}Listado de libros{% endblock  %}
+{% block contenido %}
 
+<form action={% url "listar" %} method="get">
+    {{formulario}}
+    <input type="submit" value="Buscar">
+</form>
+
+{% if listado_de_libros %}
 <ul>
     {% for libro in listado_de_libros %}
     
     <li>
-        {{libro}}
+        {{libro}} 
+        | <a href={% url "ver" libro.id %}>Ver</a> 
+        | <a href={% url "actualizar" libro.id %}>Actualizar</a>
+        | <a href={% url "eliminar" libro.id %}>Eliminar</a>
     </li>
 
     {% endfor %}
 
 </ul>
+{% else %}
+<p>No se encontraron libros.</p>
+{% endif %}
+{% endblock contenido %}
