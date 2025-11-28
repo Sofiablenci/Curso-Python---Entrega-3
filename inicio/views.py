@@ -23,7 +23,7 @@ def cargar_libro(request):
         if formulario.is_valid():
             info=formulario.cleaned_data
             
-            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'), autor=info.get('autor'), imagen=info.get('imagen'))
+            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'), autor=info.get('autor'), portada=info.get('portada'))
             libro.save()
             
             return redirect('listar')

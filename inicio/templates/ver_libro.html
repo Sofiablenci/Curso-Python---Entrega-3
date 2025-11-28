@@ -11,11 +11,18 @@
         Genero: {{libro.genero}}
 
     </li>
-    
+
     <li>
         Autor: {{libro.autor}}
 
     </li>
+    {% if libro.portada %}
+    <li>
+        Portada: <img src={{libro.portada.url}} alt="Portada del libro" height='200px'>
+
+    </li>
+    {% endif %}
+    
 </ul>
 
 {% endblock contenido %}
