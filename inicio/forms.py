@@ -4,7 +4,8 @@ from django import forms
 class CargarLibro(forms.Form):
     titulo = forms.CharField(max_length=30)
     genero = forms.CharField(max_length=30)
-    autor = forms.CharField(max_length=150) 
+    autor = forms.CharField(max_length=150)
+    imagen = forms.ImageField(required=False)
     
     
 class BuscarLibro(forms.Form):

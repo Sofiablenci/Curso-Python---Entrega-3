@@ -19,11 +19,11 @@ def vista2(request):
 def cargar_libro(request):
     
     if request.method == 'POST':
-        formulario=CargarLibro(request.POST)
+        formulario=CargarLibro(request.POST, request.FILES)
         if formulario.is_valid():
             info=formulario.cleaned_data
             
-            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'), autor=info.get('autor'))
+            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'), autor=info.get('autor'), imagen=info.get('imagen'))
             libro.save()
             
             return redirect('listar')

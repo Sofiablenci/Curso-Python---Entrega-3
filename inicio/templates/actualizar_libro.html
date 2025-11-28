@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title_head %}Actualizar libro{% endblock  %}
 {% block contenido %}
-    <form action={% url "actualizar" libro.id %} method='POST'>
+    <form action={% url "actualizar" libro.id %} method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
         {{form}}
         
