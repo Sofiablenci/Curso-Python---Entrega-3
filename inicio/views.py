@@ -4,6 +4,8 @@ from inicio.models import Libro
 from inicio.forms import CargarLibro, BuscarLibro
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def vista(request):
     #return HttpResponse('<h1>Bienvenido a la entrega 3</h1>')
@@ -13,7 +15,7 @@ def vista(request):
 def vista2(request):
     #return HttpResponse('<h1>Bienvenido a la entrega 3</h1>')
     return render(request, 'vista2.html')
-
+@login_required
 def cargar_libro(request):
     
     if request.method == 'POST':
@@ -21,7 +23,7 @@ def cargar_libro(request):
         if formulario.is_valid():
             info=formulario.cleaned_data
             
-            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'))
+            libro=Libro(titulo=info.get('titulo'), genero=info.get('genero'), autor=info.get('autor'))
             libro.save()
             
             return redirect('listar')
@@ -42,13 +44,17 @@ def ver_libro(request, libro_id):
     return render(request, 'ver_libro.html', {'libro': libro}) 
 
 
-class ActualizarLibro(UpdateView):
+class ActualizarLibro(LoginRequiredMixin, UpdateView):
     model = Libro
     template_name= 'actualizar_libro.html'
     fields = '__all__'
     success_url = reverse_lazy('listar')
     
-class EliminarLibro(DeleteView):
+class EliminarLibro(LoginRequiredMixin, DeleteView):
     model = Libro
     template_name= 'eliminar_libro.html'
     success_url = reverse_lazy('listar')
+    
+def about(request):
+    #return HttpResponse('<h1>Bienvenido a la entrega 3</h1>')
+    return render(request, 'acercademi.html')

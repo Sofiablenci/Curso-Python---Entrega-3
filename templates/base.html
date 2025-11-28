@@ -12,7 +12,19 @@
         <a href={% url "primeravista" %}>Inicio</a>
         <a href={% url "cargar" %}>Cargar Libro</a>
         <a href={% url "listar" %}>Listado de Libros</a>
+        {% if request.user.is_authenticated %}
+        <a href="#">{{request.user}}</a>
+        <form action={% url "cerrar_sesion" %} method="post">
+            {% csrf_token %}
+            <input type="submit" value="Cerrar sesion">
+
+        </form>
+        {% else %}
         <a href={% url "iniciar_sesion" %}>Iniciar sesion</a>
+        <a href={% url "registro" %}>Registrarse</a>
+        {% endif %}
+        
+        <a href={% url "about" %}>Acerca de mi</a>
     </nav>
     <main>
         {% block contenido %}
